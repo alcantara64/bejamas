@@ -1,6 +1,8 @@
 import { Container } from 'react-bootstrap';
 import styled from 'styled-components';
 import Color from '../../theme/color';
+import Metrics from '../../theme/metrics';
+const { breakPoints } = Metrics;
 
 export const HeaderContainer = styled.div`
   display: flex;
@@ -26,7 +28,7 @@ export const PhotoOfTheDayContainer = styled.div`
     left: 0;
     bottom: 0px;
     text-align: center;
-    padding: 15px 5px;
+    padding: 20px 65px;
   }
   .info-container {
     display: flex;
@@ -47,16 +49,57 @@ export const SellerContainer = styled(Container)`
     display: flex;
     justify-content: space-between;
   }
+  select {
+    border: none;
+  }
 `;
 export const ProductContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  // flex-wrap: wrap; /* NEW */
+
+  @media ${breakPoints.xs} {
+    flex-direction: column;
+  }
+
   .category {
-    flex: 1 0 20%;
+    flex: 1 1 30%;
     margin: 5px;
+    @media ${breakPoints.xs} {
+      flex-direction: column;
+    }
   }
   .products {
     display: flex;
+    flex-wrap: wrap; /* NEW */
+    @media ${breakPoints.xs} {
+      flex-direction: column;
+    }
   }
+`;
+
+export const Paragraph = styled.p`
+  font-family: Archivo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  color: ${(props) => props.color || Color.black};
+`;
+export const LargeText = styled.h2`
+  font-family: Archivo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 24px;
+  color: ${Color.black};
+`;
+export const H1 = styled.h1`
+  font-family: Archivo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 35px;
+  color: ${Color.black};
+`;
+export const CartItem = styled.div`
+  display: flex;
 `;
