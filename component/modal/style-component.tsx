@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import Metrics from '../../theme/metrics';
+const { breakPoints } = Metrics;
 
 export const ModalContainer = styled.div`
   background: #ffffff;
@@ -9,6 +11,16 @@ export const ModalContainer = styled.div`
   right: 5rem;
   width: 40%;
 
+  @media ${breakPoints.xs} {
+    width: 100%;
+    right: 1rem;
+  }
+  .cancel-button {
+    width: 100%;
+    background: white;
+    color: black;
+    border: 3px solid #000000;
+  }
   .body {
     margin: 24px;
   }

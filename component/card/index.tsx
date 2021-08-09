@@ -11,11 +11,12 @@ export default function index({
   currency,
   name,
   onAddToCart,
+  image,
 }: any) {
   return (
     <CardContainer>
       <div className="card-image-container">
-        <Card.Img variant="top" src="../../assets/images/product-1.jpg" />
+        <Card.Img variant="top" src={image} />
         {bestSeller && <BestSeller>Best Seller</BestSeller>}
         <Button
           text="ADD TO CART"

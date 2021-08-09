@@ -8,6 +8,9 @@ import {
   Paragraph,
   LargeText,
   CartItem,
+  RelatedImagesContainer,
+  PaginationContainer,
+  Pagination,
 } from './style';
 import Image from 'next/image';
 import Logo from '../../svgs/logo.svg';
@@ -29,29 +32,41 @@ const HomePage = () => {
   const [products, setProducts] = useState<Array<IProduct>>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [showCartModal, setShowCarModal] = useState<boolean>(false);
-  const fetchProducts = async (orderBy = 'name') => {
-    const response = db.ref('products').orderByChild(orderBy);
+  const [currentStartAt, setCurrentStartAt] = useState(1);
+  const fetchProducts = async (orderBy = 'id', startAt = 1, limit = 7) => {
+    const response = db
+      .ref('products')
+      .orderByChild(orderBy)
+      .startAt(startAt)
+      .limitToFirst(limit);
     response.once('value').then(function (snapshot: any) {
+      console.log(snapshot.val());
       const products = snapshot.val().filter((item: any) => {
-        return item.name !== undefined;
+        return item.name !== undefined && item.featured !== true;
       });
-      const featuredProduct = products?.filter((product: any) => {
+
+      const featuredProduct = snapshot.val()?.filter((product: any) => {
         return product.featured === true;
       });
-      console.log('products ==>', products, snapshot.val()[0].name);
-      setFeaturedProduct(featuredProduct[0]);
+      debugger;
+      if (featuredProduct[0]) {
+        setFeaturedProduct(featuredProduct[0]);
+      }
+      console.log('products', products.length);
       setProducts(products);
     });
   };
   const addToCart = (item: IProduct) => {
-    if (!cartItems.find((product) => product.id === item.id)) {
+    console.log('item ==>', item, 'cartitems ==>', cartItems);
+    if (!cartItems.some((product) => product.id === item.id)) {
       const newCarItems = [...cartItems, ...[item]];
       SetCartItem(newCarItems);
-      setShowCarModal(true);
     }
+    setShowCarModal(true);
   };
   const clearCart = () => {
     SetCartItem([]);
+    setShowCarModal(false);
   };
   useEffect(() => {
     fetchProducts();
@@ -77,18 +92,29 @@ const HomePage = () => {
             }}
             show={showCartModal}
           >
-            {' '}
-            <CartItem>
-              <div className="cart-name">
-                <H1>Samurai King Resting</H1>
-              </div>
-              <Image
-                src={CartLogo as any}
-                alt="CartItem"
-                width="540"
-                height={614}
-              />
-            </CartItem>
+            {cartItems.map((item) => (
+              <CartItem key={item.id}>
+                <div className="cart-name">
+                  <H1 className="name">{item.name}</H1>
+                  <Paragraph className="light">
+                    {item.currency} {item.price}
+                  </Paragraph>
+                </div>
+                <Image
+                  src={`/assets/images/products-images/product-${item.image.src}.png`}
+                  alt="CartItem"
+                  width="149px"
+                  height="86px"
+                />
+              </CartItem>
+            ))}
+
+            <HorizontalLine />
+            <AppButton
+              className="cancel-button"
+              onClick={clearCart}
+              text="CLEAR "
+            />
           </Modal>
         </div>
       </HeaderContainer>
@@ -96,13 +122,22 @@ const HomePage = () => {
       <PhotoOfTheDayContainer>
         <div className="photo-action-row">
           <H1>{featuredProduct?.name}</H1>
-          <AppButton onClick={addToCart} text="ADD TO CART " />
+          <AppButton
+            onClick={() => {
+              if (featuredProduct) {
+                addToCart(featuredProduct);
+              }
+            }}
+            text="ADD TO CART "
+          />
         </div>
         <div className="image-container">
           <Image
             className="image-container"
-            src={LargeImage}
+            src="/assets/images/products-images/product-01.png"
             alt={'photo of the day '}
+            width="1290px"
+            height="553px"
           />
           <div className="text-overlay">Photo of the Day</div>
         </div>
@@ -117,44 +152,46 @@ const HomePage = () => {
           <Col xs="12" sm="12" md="5" className="related-items">
             <div className="display-container">
               <LargeText>People also buy</LargeText>
-              <div className="related-text">
-                <Image
-                  src={Images.productOne as any}
-                  alt={'product one '}
-                  width={540}
-                  height={160}
-                />
-              </div>
-              <div className="related-text">
-                <Image
-                  className="related-text"
-                  src={Images.productOne as any}
-                  alt={'product two '}
-                  width={540}
-                  height={160}
-                />
-              </div>
-              <div className="related-text">
-                <Image
-                  className="related-text"
-                  src={Images.productOne as any}
-                  alt={'product 3 '}
-                  width="100%"
-                  height="100%"
-                />
-                <div className="extra-info-container">
-                  <LargeText>Details</LargeText>
-                  <div>
-                    <span>Size</span>:{' '}
-                    <span>
-                      {' '}
-                      {featuredProduct?.details?.dimmentions.width} pixel
-                    </span>
-                  </div>
-                  <div>
-                    <span>Size</span>:{' '}
-                    <span>{featuredProduct?.details?.size}</span>
-                  </div>
+              <RelatedImagesContainer>
+                <div className="related-text">
+                  <Image
+                    src="/assets/images/products-images/product-10.png"
+                    alt={'product one '}
+                    width="117px"
+                    height="147px"
+                  />
+                </div>
+                <div className="related-text">
+                  <Image
+                    className="related-text"
+                    src="/assets/images/products-images/product-9.png"
+                    alt={'product two '}
+                    width="117px"
+                    height="147px"
+                  />
+                </div>
+                <div className="related-text">
+                  <Image
+                    className="related-text"
+                    src="/assets/images/products-images/product-8.png"
+                    alt={'product 3 '}
+                    width="117px"
+                    height="147px"
+                  />
+                </div>
+              </RelatedImagesContainer>
+              <div className="extra-info-container">
+                <LargeText>Details</LargeText>
+                <div>
+                  <span>Size</span>:{' '}
+                  <span>
+                    {' '}
+                    {featuredProduct?.details?.dimmentions.width} pixel
+                  </span>
+                </div>
+                <div>
+                  <span>Size</span>:{' '}
+                  <span>{featuredProduct?.details?.size}</span>
                 </div>
               </div>
             </div>
@@ -185,17 +222,11 @@ const HomePage = () => {
       </SellerContainer>
       <ProductContainer>
         <div className="category">
-          <h5>Categories</h5>
-          <Form.Check
-            type="checkbox"
-            id={`default-checkbox`}
-            label={`default checkbox`}
-          />
-          <Form.Check
-            type="checkbox"
-            id={`default-checkbox`}
-            label={`default checkbox`}
-          />
+          <LargeText>Categories </LargeText>
+          <Form.Check type="checkbox" id={`People`} label={`People`} />
+          <Form.Check type="checkbox" id={`Pets`} label={`Pets`} />
+          <Form.Check type="checkbox" label={`Cities`} />
+          <Form.Check type="checkbox" id={`food`} label={`Food`} />
         </div>
         <div className="products">
           {products.map((item) => (
@@ -206,11 +237,38 @@ const HomePage = () => {
               price={item.price}
               currency={item.currency}
               name={item.name}
-              onAddToCart={addToCart}
+              image={`../../assets/images/products-images/product-${item.image.src}.png`}
+              onAddToCart={() => {
+                addToCart(item);
+              }}
             />
           ))}
         </div>
       </ProductContainer>
+      <PaginationContainer>
+        {currentStartAt > 1 && (
+          <Pagination
+            onClick={() => {
+              const newStartAt = currentStartAt - 6;
+              fetchProducts('id', newStartAt, 6);
+              setCurrentStartAt(newStartAt);
+            }}
+          >
+            Previous
+          </Pagination>
+        )}
+        {currentStartAt < 12 && (
+          <Pagination
+            onClick={() => {
+              const newStartAt = currentStartAt + 6;
+              fetchProducts('id', newStartAt, 6);
+              setCurrentStartAt(newStartAt);
+            }}
+          >
+            Next
+          </Pagination>
+        )}
+      </PaginationContainer>
     </>
   );
 };

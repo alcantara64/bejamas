@@ -1,88 +1,270 @@
 {
     "products": [
         {
-            "name": "Red Bench",
-            "category": "people",
-            "price": 3.89,
-            "currency": "USD",
-            "image": {
-                "src": "",
-                "alt": ""
-            },
             "bestseller": true,
-            "featured": false,
-            "details": null
-        },
-        {
-            "name": "Egg Balloon",
-            "category": "food",
-            "price": 93.89,
-            "currency": "USD",
-            "image": "",
-            "bestseller": false,
-            "featured": false,
-            "details": null
-        },
-        {
-            "name": "Man",
             "category": "people",
-            "price": 100,
             "currency": "USD",
-            "image": {
-                "src": "",
-                "alt": ""
-            },
-            "bestseller": false,
             "featured": false,
-            "details": null
+            "id": 1,
+            "image": {
+                "alt": "",
+                "src": "2"
+            },
+            "name": "Red Bench",
+            "price": 3.89
         },
         {
-            "name": "Architecture",
+            "bestseller": false,
+            "category": "people",
+            "currency": "USD",
+            "featured": false,
+            "id": 2,
+            "image": {
+                "alt": "",
+                "src": "3"
+            },
+            "name": "Man",
+            "price": 100
+        },
+        {
+            "bestseller": false,
             "category": "landmarks",
-            "price": 101,
             "currency": "USD",
             "dimmentions": {
-                "width": 1020,
-                "height": 1020
+                "height": 1020,
+                "width": 1020
             },
-            "image": "",
-            "bestseller": false,
             "featured": false,
-            "details": null
+            "id": 3,
+            "image": {
+                "alt": "landmarks",
+                "src": 4
+            },
+            "name": "Architecture",
+            "price": 101
         },
         {
-            "name": "Samurai King Restling",
-            "category": "landmarks",
-            "price": 101,
-            "currency": "USD",
-            "image": {
-                "src": "",
-                "alt": ""
-            },
             "bestseller": false,
-            "featured": true,
+            "category": "landmarks",
+            "currency": "USD",
             "details": {
-                "dimmentions": {
-                    "width": 1020,
-                    "height": 1020
-                },
-                "size": 15000,
                 "description": "So how did the classical Latin become so incoherent? According to McClintock, a 15th century typesetter likely",
+                "dimmentions": {
+                    "height": 1020,
+                    "width": 1020
+                },
                 "recommendations": [
                     {
-                        "src": "",
-                        "alt": ""
+                        "alt": "",
+                        "src": ""
                     },
                     {
-                        "src": "",
-                        "alt": ""
+                        "alt": "",
+                        "src": ""
                     },
                     {
-                        "src": "",
-                        "alt": ""
+                        "alt": "",
+                        "src": ""
                     }
-                ]
-            }
+                ],
+                "size": 15000
+            },
+            "featured": true,
+            "id": 4,
+            "image": {
+                "alt": "",
+                "src": "01"
+            },
+            "name": "Samurai King Restling",
+            "price": 101
+        },
+        {
+            "bestseller": false,
+            "category": "food",
+            "currency": "USD",
+            "dimmentions": {
+                "height": 1020,
+                "width": 1020
+            },
+            "featured": false,
+            "id": 5,
+            "image": {
+                "alt": "landmarks",
+                "src": 4
+            },
+            "name": "Rice",
+            "price": 101
+        },
+        {
+            "bestseller": false,
+            "category": "landmarks",
+            "currency": "USD",
+            "details": {
+                "description": "So how did the classical Latin become so incoherent? According to McClintock, a 15th century typesetter likely",
+                "dimmentions": {
+                    "height": 1020,
+                    "width": 1020
+                },
+                "recommendations": [
+                    {
+                        "alt": "",
+                        "src": ""
+                    },
+                    {
+                        "alt": "",
+                        "src": ""
+                    },
+                    {
+                        "alt": "",
+                        "src": ""
+                    }
+                ],
+                "size": 15000
+            },
+            "featured": true,
+            "id": 6,
+            "image": {
+                "alt": "",
+                "src": "01"
+            },
+            "name": "Samurai King Restling",
+            "price": 101
+        },
+        {
+            "bestseller": false,
+            "category": "pet",
+            "currency": "USD",
+            "dimmentions": {
+                "height": 1020,
+                "width": 1020
+            },
+            "featured": false,
+            "id": 7,
+            "image": {
+                "alt": "landmarks",
+                "src": 4
+            },
+            "name": "Rice",
+            "price": 2.8
+        },
+        {
+            "bestseller": false,
+            "category": "pet",
+            "currency": "USD",
+            "dimmentions": {
+                "height": 1020,
+                "width": 1020
+            },
+            "featured": false,
+            "id": 8,
+            "image": {
+                "alt": "landmarks",
+                "src": 8
+            },
+            "name": "Rice",
+            "price": 2.8
+        },
+        {
+            "bestseller": false,
+            "category": "fruit",
+            "currency": "USD",
+            "dimmentions": {
+                "height": 1020,
+                "width": 1020
+            },
+            "featured": false,
+            "id": 9,
+            "image": {
+                "alt": "Mango",
+                "src": 9
+            },
+            "name": "Rice",
+            "price": 2.8
+        },
+        {
+            "bestseller": false,
+            "category": "fruit",
+            "currency": "USD",
+            "dimmentions": {
+                "height": 1020,
+                "width": 1020
+            },
+            "featured": false,
+            "id": 9,
+            "image": {
+                "alt": "landmarks",
+                "src": 9
+            },
+            "name": "Guava",
+            "price": 12.8
+        },
+        {
+            "bestseller": false,
+            "category": "fruit",
+            "currency": "USD",
+            "dimmentions": {
+                "height": 1020,
+                "width": 1020
+            },
+            "featured": false,
+            "id": 10,
+            "image": {
+                "alt": "landmarks",
+                "src": 10
+            },
+            "name": "Guava",
+            "price": 121.8
+        },
+        {
+            "bestseller": false,
+            "category": "gym",
+            "currency": "USD",
+            "dimmentions": {
+                "height": 1020,
+                "width": 1020
+            },
+            "featured": false,
+            "id": 11,
+            "image": {
+                "alt": "landmarks",
+                "src": 11
+            },
+            "name": "25kg Iron",
+            "price": 121.8
+        },
+        {
+            "bestseller": false,
+            "category": "sport",
+            "currency": "USD",
+            "dimmentions": {
+                "height": 1020,
+                "width": 1020
+            },
+            "featured": false,
+            "id": 11,
+            "image": {
+                "alt": "Bicycle",
+                "src": 11
+            },
+            "name": "Bicycle",
+            "price": 500.8
+        },
+        {
+            "bestseller": false,
+            "category": "sport",
+            "currency": "USD",
+            "dimmentions": {
+                "height": 1020,
+                "width": 1020
+            },
+            "featured": false,
+            "id": 12,
+            "image": {
+                "alt": "Boot",
+                "src": 11
+            },
+            "name": "Boot",
+            "price": 500.8
         }
     ]
 }
